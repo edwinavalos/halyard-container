@@ -5,7 +5,7 @@ MAINTAINER edwin@edwinavalos.com
 
 # Copy the daemon and CLI into the same container
 COPY halyard/halyard-web/build/install/halyard /opt/halyard
-COPY halyard/halyard-cli/build/install/halyard-cli /opt/halyard-cli
 RUN apk add --update bash && rm -rf /var/cache/apk/*
+# Add hal to the path
 
 CMD ["/opt/halyard/bin/halyard"]
