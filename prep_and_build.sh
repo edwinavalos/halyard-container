@@ -8,6 +8,7 @@ git clone https://github.com/spinnaker/halyard.git
 cd halyard
 git checkout tags/"${VERSION}"
 export GRADLE_USER_HOME=../.gradle
+./gradlew assemble
 ./gradlew halyard-web:installDist -x test -q
 ./gradlew halyard-cli:installDist -x test -q
 cd ..
