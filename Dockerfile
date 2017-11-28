@@ -4,5 +4,6 @@ FROM openjdk:8u131-jre-alpine
 MAINTAINER edwin@edwinavalos.com
 
 COPY halyard/halyard-web/build/install/halyard /opt/halyard
+RUN apk add --update bash
 
 CMD ["/opt/halyard/bin/halyard"]
