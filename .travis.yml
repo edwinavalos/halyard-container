@@ -1,0 +1,4 @@
+language: bash
+
+script:
+    - bash prep_and_build.sh
