@@ -1,14 +1,20 @@
-#!/usr/bin/env bash -e
+#!/bin/bash -e
 
-VERSION=version-0.37.0
 TAG=$(grep -Eo "[0-9]*\.[0-9]*\.[0-9]*" <<< "${VERSION}")
 [ -e halyard ] && rm -rf halyard
+[ -e .gradle ] && rm -rf .gradle
 git clone https://github.com/spinnaker/halyard.git
 cd halyard
-git checkout tags/"${VERSION}"
+git checkout tags/"${1}"
 export GRADLE_USER_HOME=../.gradle
-./gradlew halyard-web:installDist -x test
-./gradlew halyard-cli:installDist -x test
+echo "Doing the assemble"
+./gradlew assemble -q
+echo "Finished the assemble"
+echo "Doing the web installDist"
+./gradlew halyard-web:installDist -x test -q
+echo "Doing the cli installDist"
+./gradlew halyard-cli:installDist -x test -q
+echo "Finished the cli installDist"
 cd ..
 
 docker build -f Dockerfile -t edwinavalos/halyard:"${TAG}" .
