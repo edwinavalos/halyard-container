@@ -10,6 +10,7 @@ phases:
      commands:
        - echo Build started on `date`
        - echo Building the Docker image...
+       - export VERSION=version-0.37.0
        - bash prep_and_build.sh
    post_build:
      commands:
